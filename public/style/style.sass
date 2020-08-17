@@ -1,0 +1,93 @@
+=flexcenter()
+  display: flex
+  justify-content: center
+  align-items: center
+  flex-wrap: wrap
+.nav-wrapper
+  padding: 0 2%
+.container
+  margin: 1% auto !important
+.course
+  width: 100%
+  display: flex
+  flex-direction: column
+  align-items: center
+  & h1
+    margin-bottom: 2rem
+  & img
+    max-width: 50%
+    height: auto
+  .price
+    font-size: 2.5rem
+.card-course
+  .card-action
+    display: flex
+    align-items: center
+    justify-content: space-around
+  .price
+    font-size: 2em
+.grid
+  display: grid
+  grid-template-columns: 2fr 0.5fr 1fr 1fr 1fr
+  grid-auto-rows: minmax(3rem, auto)
+  min-width: 800px
+  .name,.count,.action,.cart-pagination, .price,.total
+    border: 1px solid gray
+    padding: 0 5%
+  &.cart-pagination
+    grid-template-columns: 3.5fr 1fr 1fr
+
+  &.cart-header
+    text-align: center
+    font-size: 1.5em
+    font-weight: bold
+    background: lightgray
+  &.cart-body
+    @extend .cart-header
+    font-weight: normal
+    background: none
+    text-align: right
+    .name
+      text-align: left
+    .action
+      text-align: center
+  &.cart-pagination
+    @extend .cart-header
+    background: none
+    text-align: right
+.order-form-wrapper
+  margin: 1%
+  display: flex
+  justify-content: center
+
+.order-courses
+  display: grid
+  grid-template-columns: 0.5fr 2fr 0.5fr 1fr 1fr
+  padding: 1% 2%
+  &.body
+    .price,.count
+      text-align: right
+  &.header
+    text-align: center
+    margin-top: 5%
+.card-action
+  text-align: right
+  size: 1em
+  font-weight: bold
+.auth,.form-remove
+  margin-top: 1%
+.login,.register
+  position: relative
+.error-notify
+  margin-top: 1%
+  right: 1%
+  padding: 1%
+  font-size: 1em
+  text-align: center
+  position: absolute
+  background-color: lightcoral
+  border-radius: 5px
+
+
+
+

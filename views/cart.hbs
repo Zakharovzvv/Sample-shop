@@ -1,0 +1,37 @@
+<h1>Cart</h1>
+
+{{#if courses}}
+    <div class="cart">
+        <div class="cart-header grid">
+            <div class="name">Name</div>
+            <div class="name">Count</div>
+            <div class="name">Price</div>
+            <div class="name">Total</div>
+            <div class="name">Action</div>
+        </div>
+        <div class="cart-body grid">
+            {{#each courses}}
+                <div class="name">{{title}}</div>
+                <div class="count">{{count}}</div>
+                <div class="price">{{price}}</div>
+                <div class="price">{{total}}</div>
+                <div class="action">
+                    <button class="btn btn-small btn-delete-cart-item" data-id="{{id}}" data-csrf="{{@root.csrf}}">Delete</button>
+                </div>
+            {{/each}}
+        </div>
+        <div class="cart-pagination grid">
+            <div class="name">Total :</div>
+            <div class="price">{{totalPrice}}</div>
+            <div class="action"></div>
+        </div>
+        <div class="order-form-wrapper">
+            <form action="/orders" method="post">
+                <input type="hidden" name="_csrf" value="{{csrf}}">
+                <button class="btn btn-primary" type="submit">Order</button>
+            </form>
+        </div>
+    </div>
+{{else}}
+    <p>Cart ie empty</p>
+{{/if}}
