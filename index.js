@@ -66,8 +66,7 @@ app.use(csrf());
 app.use(flash());
 app.use(varMiddleware);
 app.use(userMiddleware);
-app.use(helmet());
-app.use(compression())
+
 
 app.use('/', homeRoute);
 app.use('/add', addRoute);
@@ -79,6 +78,8 @@ app.use('/profile', profileRoute);
 
 app.use(error404Handler);
 
+app.use(helmet());
+app.use(compression())
 
 // async function checkUser() {
 //   const candidate = await User.findOne();
