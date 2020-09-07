@@ -128,17 +128,18 @@ router.post('/reset', (req, res) => {
     console.log(e)
   }
 })
-router.get('/password/token', (req, res) => {
+router.get('/password/:token', async (req, res) => {
   const token = req.params.token;
+
   if (!token) {
     req.flash('resetError', 'Token missed')
     return res.redirect('/auth/login')
   }
 
   try {
-    const user = User.findOne({
+  const user = await User.findOne({
       resetToken: token,
-      resetTokenExpire: {$gt: Date.now()}
+      resetTokenExp: {$gt: Date.now()}
     })
 
     if (!user) {
@@ -149,7 +150,7 @@ router.get('/password/token', (req, res) => {
       res.render('auth/password', {
         title: 'Reset password',
         token,
-        userId: req.userId.toString(),
+        userId: user._id.toString(),
         resetError: req.flash('resetError')
       })
     }
