@@ -137,17 +137,16 @@ router.get('/password/:token', async (req, res) => {
   }
 
   try {
-  const user = await User.findOne({
+    const user = await User.findOne({
       resetToken: token,
-      resetTokenExpire: {$gt: Date.now()}
+      tokenExpire: {$gt: Date.now()}
     })
-
     if (!user) {
       req.flash('resetError', 'User did not found')
       res.redirect('/auth/login')
 
     } else {
-      res.render('auth/password', {
+      res.render('auth/newPassword', {
         title: 'Reset password',
         token,
         userId: user._id.toString(),
@@ -161,14 +160,13 @@ router.get('/password/:token', async (req, res) => {
 })
 
 router.post('/password', async (req, res) => {
-  const token = req.params.token;
+  const token = req.body.token;
   try {
-    const user = User.findOne({
+    const user =await User.findOne({
       resetToken: token,
-      resetTokenExpire: {$gt: Date.now()},
+      tokenExpire: {$gt: Date.now()},
       _id: req.body.userId
     })
-
     if (!user) {
       req.flash('resetError', 'Token expire')
       res.redirect('/auth/login')
@@ -176,7 +174,7 @@ router.post('/password', async (req, res) => {
     } else {
       user.password = await bcrypt.hash(req.body.password, 10);
       user.resetToken = undefined;
-      user.resetTokenExpire = undefined;
+      user.tokenExpire = undefined;
       await user.save();
       res.redirect('/auth/login')
     }
