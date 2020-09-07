@@ -139,7 +139,7 @@ router.get('/password/:token', async (req, res) => {
   try {
   const user = await User.findOne({
       resetToken: token,
-      resetTokenExp: {$gt: Date.now()}
+      resetTokenExpire: {$gt: Date.now()}
     })
 
     if (!user) {
