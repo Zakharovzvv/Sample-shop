@@ -128,7 +128,7 @@ router.post('/reset', (req, res) => {
     console.log(e)
   }
 })
-router.get('/password:token', (req, res) => {
+router.get('/password/:token', (req, res) => {
   const token = req.params.token;
   if (!token) {
     req.flash('resetError', 'Token missed')
