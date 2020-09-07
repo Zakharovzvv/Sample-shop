@@ -1,6 +1,6 @@
 const keys=require('../keys')
 
-module.export=function (email){
+module.exports=function (email){
   return {
     to: email,
     from:keys.EMAIL_FROM,
@@ -11,5 +11,6 @@ module.export=function (email){
     <hr/>
     <a href="${keys.BASE_URL}">Course magazine</a>
     `
+
   }
 }

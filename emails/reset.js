@@ -1,6 +1,6 @@
 const keys=require('../keys')
 
-module.export=function (email,token){
+module.exports=function (email,token){
   return {
     to: email,
     from:keys.EMAIL_FROM,
